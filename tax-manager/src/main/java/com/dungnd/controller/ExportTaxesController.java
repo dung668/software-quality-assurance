@@ -55,12 +55,21 @@ public class ExportTaxesController extends HttpServlet {
 
         // get list user taxes
         UserTaxDao userTaxDao = new UserTaxDaoImpl();
-        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int year = 0, month = 0, command = Constant.GET_ALL_USER_TAXES;
+        if(request.getParameter("year") != null){
+            year = Integer.parseInt(request.getParameter("year"));
+            month = Integer.parseInt(request.getParameter("month"));
+        }
+
+        int currentMonth = month != 0 ? month : Calendar.getInstance().get(Calendar.MONTH);
+        int currentYear = year != 0 ? year : Calendar.getInstance().get(Calendar.YEAR);
 
         int prevMonth = (currentMonth == 0) ? 12 : currentMonth;
 
-        List<UserTax> userTaxes = userTaxDao.findUserTaxesByMonth(prevMonth,currentYear, Constant.GET_ALL_USER_TAXES);
+        if("top".equals(request.getParameter("cmd")))
+            command = Constant.FIND_FIVE_HIGHEST_USER_TAXES;
+
+        List<UserTax> userTaxes = userTaxDao.findUserTaxesByMonth(prevMonth,currentYear, command);
 
         // ------------------------
 

@@ -20,8 +20,8 @@ public class UserTaxDaoImpl implements UserTaxDao {
 
         String addition = ""; // thêm vào cuối câu lệnh sql
 
-        if(command == Constant.FIND_THREE_HIGHEST_USER_TAXES)
-            addition = "LIMIT 3";
+        if(command == Constant.FIND_FIVE_HIGHEST_USER_TAXES)
+            addition = "LIMIT 5";
 
         try(
             Connection conn = DBConnection.getCon();

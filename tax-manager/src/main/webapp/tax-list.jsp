@@ -177,8 +177,8 @@
 
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <a href="export"><button type="button" class="btn btn-primary">Xuất báo cáo</button></a>
-                    <button type="button" class="btn btn-warning">3 người nộp thuế cao nhất</button>
+                    <a href="export?cmd=all${cyear != null? '&year=':''}${cyear!=null ? cyear : ''}${cmonth != null? '&month=':''}${cmonth!=null? cmonth :''}"><button type="button" class="btn btn-primary">Xuất báo cáo</button></a>
+                    <a href="export?cmd=top${cyear != null? '&year=':''}${cyear!=null ? cyear : ''}${cmonth != null? '&month=':''}${cmonth!=null? cmonth :''}"><button type="button" class="btn btn-warning">5 người nộp thuế cao nhất</button></a>
                 </div>
             </div>
 

@@ -46,6 +46,8 @@ public class ListTaxController extends javax.servlet.http.HttpServlet {
 
         int prevMonth = (currentMonth == 0) ? 12 : currentMonth;
 
+        request.setAttribute("cmonth", prevMonth);
+
         List<UserTax> userTaxes = userTaxDao.findUserTaxesByMonth(prevMonth,currentYear,Constant.GET_ALL_USER_TAXES);
 
         request.setAttribute("userTaxes", userTaxes);
