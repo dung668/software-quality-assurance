@@ -6,7 +6,7 @@
     <display-name>Tax Manager</display-name>
 
     <welcome-file-list>
-        <welcome-file>/test.jsp</welcome-file>
+        <welcome-file>/home</welcome-file>
     </welcome-file-list>
     
 </web-app>

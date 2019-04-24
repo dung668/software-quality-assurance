@@ -21,13 +21,13 @@ public class UserTaxDaoImpl implements UserTaxDao {
         String addition = ""; // thêm vào cuối câu lệnh sql
 
         if(command == Constant.FIND_THREE_HIGHEST_USER_TAXES)
-            addition = " ORDER BY thue_phai_nop DESC LIMIT 3";
+            addition = "LIMIT 3";
 
         try(
             Connection conn = DBConnection.getCon();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM user_tax WHERE thoi_gian_chiu_thue >= '" +
-                                                min +"' AND thoi_gian_chiu_thue < '" + max + "' " + addition);
+                                                min +"' AND thoi_gian_chiu_thue < '" + max + "' ORDER BY thue_phai_nop DESC " + addition);
         ){
             List<UserTax> userTaxes= new ArrayList<>();
 
@@ -48,7 +48,7 @@ public class UserTaxDaoImpl implements UserTaxDao {
 
                 userTaxes.add(u);
             }
-            return userTaxes;
+            return userTaxes.size() > 0 ? userTaxes : null;
 
         } catch (Exception e){
             System.err.println("loi - findUserTaxesByMonth");
@@ -56,6 +56,24 @@ public class UserTaxDaoImpl implements UserTaxDao {
 
         return null;
 
+    }
+
+    @Override
+    public List<Integer> getYears() {
+
+        try(
+            Connection conn = DBConnection.getCon();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT DISTINCT YEAR(thoi_gian_chiu_thue) AS 'year' FROM tax_sqa.user_tax" +
+                    " ORDER BY thoi_gian_chiu_thue DESC");
+        ){
+            List<Integer> years = new ArrayList<>();
+            while(rs.next()){
+                years.add(rs.getInt("year"));
+            }
+            return years;
+        } catch(Exception e){e.printStackTrace();}
+        return null;
     }
 
     public static void main(String[] args) {

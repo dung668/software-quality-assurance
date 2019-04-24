@@ -5,7 +5,9 @@
   Time: 5:06 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -113,26 +115,25 @@
                     </table>
 
                 </div>
-
                 <div class="col-lg-6 col-md-6">
                     <h5 class="text-center">CÁC KHOẢN GIẢM THUẾ</h5>
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="tax-config" method="POST">
                         <div class="form-group">
                             <label class="control-label col-sm-4" for="email">Bản thân (VNĐ):</label>
                             <div class="col-sm-8">
-                                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                <input type="number" class="form-control" id="email" placeholder="Khoản giảm trừ bản thân" name="banThan" value="${taxConfig.banThan}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-4" for="pwd">Phụ thuộc (VNĐ/n):</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                                <input type="number" class="form-control" id="pwd" placeholder="Khoản giảm trừ phụ thuộc" name="phuThuoc" value="${taxConfig.phuThuoc}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-4" for="pwd">Tiền ăn (VNĐ):</label>
+                            <label class="control-label col-sm-4" for="pwd1">Tiền ăn (VNĐ):</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                                <input type="number" class="form-control" id="pwd1" placeholder="Khoản giảm trừ tiền ăn" name="tienAn" value="${taxConfig.tienAn}">
                             </div>
                         </div>
                         <div class="form-group">
