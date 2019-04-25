@@ -121,19 +121,19 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4" for="email">Bản thân (VNĐ):</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="email" placeholder="Khoản giảm trừ bản thân" name="banThan" value="${taxConfig.banThan}">
+                                <input type="number" min="1000" step="1000" class="form-control" id="email" placeholder="Khoản giảm trừ bản thân" name="banThan" value="${taxConfig.banThan}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-4" for="pwd">Phụ thuộc (VNĐ/n):</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="pwd" placeholder="Khoản giảm trừ phụ thuộc" name="phuThuoc" value="${taxConfig.phuThuoc}">
+                                <input type="number" min="1000" step="1000" class="form-control" id="pwd" placeholder="Khoản giảm trừ phụ thuộc" name="phuThuoc" value="${taxConfig.phuThuoc}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-4" for="pwd1">Tiền ăn (VNĐ):</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="pwd1" placeholder="Khoản giảm trừ tiền ăn" name="tienAn" value="${taxConfig.tienAn}">
+                                <input type="number" min="1000" step="1000" class="form-control" id="pwd1" placeholder="Khoản giảm trừ tiền ăn" name="tienAn" value="${taxConfig.tienAn}">
                             </div>
                         </div>
                         <div class="form-group">
