@@ -10,10 +10,15 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/home", "/list-taxes"})
+@WebServlet(urlPatterns = {"", "/home", "/list-taxes"})
 public class ListTaxController extends javax.servlet.http.HttpServlet {
 
-    protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
 
         Integer year = Integer.valueOf(request.getParameter("select-year"));
         Integer month = Integer.valueOf(request.getParameter("select-month"));

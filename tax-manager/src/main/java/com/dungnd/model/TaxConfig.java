@@ -56,5 +56,19 @@ public class TaxConfig {
                 ", tienAn=" + tienAn +
                 '}';
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+    	if(obj instanceof TaxConfig) {
+    		
+    		TaxConfig tax = (TaxConfig) obj;
+    		
+    		if(tax.getBanThan().equals(this.banThan) && tax.getTienAn().equals(this.tienAn)
+    				&& tax.getPhuThuoc().equals(this.phuThuoc))
+    			return true;
+    		
+    	}
+    	return false;
+    }
 
 }

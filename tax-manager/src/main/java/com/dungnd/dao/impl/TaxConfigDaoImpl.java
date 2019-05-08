@@ -14,8 +14,7 @@ public class TaxConfigDaoImpl implements TaxConfigDao {
 	@Override
 	public boolean editTax(TaxConfig taxConfig, Connection conn) {
 
-		if (taxConfig.getPhuThuoc() == null || taxConfig.getPhuThuoc() < 0 || taxConfig.getTienAn() == null
-				|| taxConfig.getTienAn() < 0 || taxConfig.getBanThan() == null || taxConfig.getBanThan() < 0)
+		if (taxConfig.equals(getTaxConfig())) // if data not change
 			return false;
 
 		try (
