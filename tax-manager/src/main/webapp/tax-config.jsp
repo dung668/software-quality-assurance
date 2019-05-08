@@ -71,7 +71,7 @@
 				<!-- /. ROW  -->
 				<hr />
 				<c:if test="${not empty mess}">
-					<div class="row">
+					<div class="row myAlert">
 						<div class="col-md-12">
 							<div class="alert alert-success alert-dismissible text-center">
 								<a href="#" class="close" data-dismiss="alert"
@@ -206,6 +206,11 @@
 		    $('#myForm :input').on('change', function(){
 		        $('#btnSave').removeAttr('disabled');
 		    });
+		    window.setTimeout(function () {
+		        $(".myAlert").fadeTo(1000, 0).slideUp(1000, function () {
+		            $(this).remove();
+		        });
+		    }, 2500);
 		});
 	</script>
 

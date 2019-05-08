@@ -26,7 +26,12 @@ public class TaxConfigServlet extends HttpServlet {
         TaxConfig taxConfig = new TaxConfig(null, banThan, phuThuoc, tienAn);
 
         TaxConfigDao taxConfigDao = new TaxConfigDaoImpl();
-
+        
+        if(taxConfig.equals(taxConfigDao.getTaxConfig())) {
+        	response.sendRedirect("tax-config");
+        	return;
+        }
+        
         if(taxConfigDao.editTax(taxConfig, DBConnection.getCon()))
         	request.setAttribute("mess", "success");
         
