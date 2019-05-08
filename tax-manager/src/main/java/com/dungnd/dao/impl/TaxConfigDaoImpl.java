@@ -11,51 +11,49 @@ import java.sql.Statement;
 
 public class TaxConfigDaoImpl implements TaxConfigDao {
 
-    @Override
-    public boolean editTax(TaxConfig taxConfig) {
+	@Override
+	public boolean editTax(TaxConfig taxConfig, Connection conn) {
 
-        if(taxConfig.getPhuThuoc() == null || taxConfig.getTienAn() == null || taxConfig.getBanThan() == null)
-            return false;
+		if (taxConfig.getPhuThuoc() == null || taxConfig.getPhuThuoc() < 0 || taxConfig.getTienAn() == null
+				|| taxConfig.getTienAn() < 0 || taxConfig.getBanThan() == null || taxConfig.getBanThan() < 0)
+			return false;
 
-        try(
-                Connection conn = DBConnection.getCon();
-                PreparedStatement ps = conn.prepareCall("UPDATE `tax_sqa`.`tax_config` SET `ban_than` = ?, `nguoi_phu_thuoc` = ?, `tien_an` = ? WHERE (`ma_cau_hinh` = '1');");
-        ){
+		try (
+				PreparedStatement ps = conn.prepareCall(
+						"UPDATE tax_config SET ban_than = ?, nguoi_phu_thuoc = ?, tien_an = ? WHERE (ma_cau_hinh = '1');");) {
 
-            ps.setInt(1, taxConfig.getBanThan());
-            ps.setInt(2, taxConfig.getPhuThuoc());
-            ps.setInt(3, taxConfig.getTienAn());
-            return ps.executeUpdate() > 0;
+			ps.setInt(1, taxConfig.getBanThan());
+			ps.setInt(2, taxConfig.getPhuThuoc());
+			ps.setInt(3, taxConfig.getTienAn());
+			return ps.executeUpdate() > 0;
 
-        }catch (Exception e){
-            System.out.println("co loi - editTax");
-        }
-        return false;
-    }
+		} catch (Exception e) {
+			System.out.println("co loi - editTax");
+		}
+		return false;
+	}
 
-    @Override
-    public TaxConfig getTaxConfig() {
+	@Override
+	public TaxConfig getTaxConfig() {
 
-        try(
-            Connection conn = DBConnection.getCon();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM tax_sqa.tax_config;")
-        ){
+		try (Connection conn = DBConnection.getCon();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM tax_config;")) {
 
-            if(rs.next())
-                return new TaxConfig(rs.getInt("ma_cau_hinh"), rs.getInt("ban_than"), rs.getInt("nguoi_phu_thuoc"), rs.getInt("tien_an"));
+			if (rs.next())
+				return new TaxConfig(rs.getInt("ma_cau_hinh"), rs.getInt("ban_than"), rs.getInt("nguoi_phu_thuoc"),
+						rs.getInt("tien_an"));
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-
-    public static void main(String[] args) {
-        //new TaxConfigDaoImpl().editTax(new TaxConfig(null, 9000000,3600000,730000));
-        System.out.println(new TaxConfigDaoImpl().getTaxConfig());
-    }
+	public static void main(String[] args) {
+		// new TaxConfigDaoImpl().editTax(new TaxConfig(null, 9000000,3600000,730000));
+		System.out.println(new TaxConfigDaoImpl().getTaxConfig());
+	}
 
 }

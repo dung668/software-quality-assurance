@@ -175,7 +175,7 @@
 
             </c:if>
 
-            <div class="row">
+            <div class="row" ${userTaxes == null ? 'style="display: none"' : ''}>
                 <div class="col-md-12 text-center">
                     <a href="export?cmd=all${cyear != null? '&year=':''}${cyear!=null ? cyear : ''}${cmonth != null? '&month=':''}${cmonth!=null? cmonth :''}"><button type="button" class="btn btn-primary">Xuất báo cáo</button></a>
                     <a href="export?cmd=top${cyear != null? '&year=':''}${cyear!=null ? cyear : ''}${cmonth != null? '&month=':''}${cmonth!=null? cmonth :''}"><button type="button" class="btn btn-warning">5 người nộp thuế cao nhất</button></a>
