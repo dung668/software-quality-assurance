@@ -10,4 +10,4 @@
 - Tạo database tên "tax_sqa" và import file cùng tên vào
 - Import Maven project vào eclipse
 - Chuột phải project -> run on server (tomcat)
-- Chạy thử: http://localhost:8080/tax-manager/home
+- Chạy thử: http://localhost:8080/tax-manager
