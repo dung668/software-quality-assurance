@@ -17,7 +17,7 @@ public class UserTaxDaoImpl implements UserTaxDao {
 																					// nộp thuế cao nhất
 
 		String min = year + "-" + month + "-01"; // biên bên trái (dùng so sánh ngày trong câu sql)
-		String max = year + "-" + (month + 1) + "-01"; // biên bên phải
+		String max = month == 12 ? (year + 1) + "-01-01" : year + "-" + (month + 1) + "-01"; // biên bên phải
 
 		String addition = ""; // thêm vào cuối câu lệnh sql
 
@@ -50,7 +50,7 @@ public class UserTaxDaoImpl implements UserTaxDao {
 			return userTaxes.size() > 0 ? userTaxes : null;
 
 		} catch (Exception e) {
-			System.err.println("loi - findUserTaxesByMonth");
+			e.printStackTrace();
 		}
 
 		return null;
