@@ -7,6 +7,7 @@
 
 <b>Cách chạy:</b>
 
+- Nếu máy chạy Cơ sở dữ liệu khác, hoặc thông tin cấu hình khác, vào file tax-manager/src/main/java/com/dungnd/util/DBConnection.java sửa thông tin kết nối cơ sở dữ liệu
 - Tạo database tên "tax_sqa" và import file cùng tên vào
 - Import Maven project vào eclipse
 - Chuột phải project -> run on server (tomcat)
